@@ -1,0 +1,116 @@
+﻿<Window x:Class="Yatests.FolderWindow.AdminWindowFolder.TestMainFolder.AddTestMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Yatests.FolderWindow.AdminWindowFolder.TestMainFolder"
+        mc:Ignorable="d"
+        Title="Добавление теста" 
+        Height="582" 
+        Width="401"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Topmost="True"
+        BorderThickness="2.5"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"        
+        AllowsTransparency="True" 
+        Background="Transparent"
+        >
+    <Border Width="Auto" Height="Auto"
+          BorderThickness="2"
+          CornerRadius="10" BorderBrush="Black">
+        <Border.Background>
+            <ImageBrush ImageSource="/Yatests;component/FolderResource/FolderImage/Background.jpg" Stretch="UniformToFill"/>
+        </Border.Background>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="59"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="88"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="56"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="31"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="StatusCb"
+                  Grid.Row="6"
+                  VerticalContentAlignment="Center"
+                  SelectedValuePath="IdStatus" 
+                  DisplayMemberPath="NameStatus"
+                  Margin="31,0" Height="Auto" 
+                  Width="Auto" 
+                  BorderBrush="Black" 
+                  SelectionChanged="StatusCb_SelectionChanged" 
+                  FontSize="16" FontWeight="Bold" 
+                  FontFamily="Roboto">
+            <ComboBox.Foreground>
+                <SolidColorBrush Color="Black"/>
+            </ComboBox.Foreground>
+            <ComboBox.Background>
+                <SolidColorBrush Color="Black"/>
+            </ComboBox.Background>
+        </ComboBox>
+        <TextBlock x:Name="T1" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{DynamicResource T2}"
+                   Grid.Row="2"
+                   Text="Название теста"/>
+        <TextBlock x:Name="T2" HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{DynamicResource T2}"
+                   Grid.Row="4"
+                   Text="Описание"/>
+        <TextBlock x:Name="T3" HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{DynamicResource T2}"
+                   Grid.Row="6"
+                   Text="Статус">
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <Image  x:Name="BTCreateATest"
+                HorizontalAlignment="Center"
+                Source="/FolderResource/FolderImage/CreateATest.png"
+                MouseLeftButtonDown="CreateATest"
+                Grid.Row="8"
+                Cursor="Hand" Margin="94,0" Width="209"/>
+        <Image  x:Name="BTBack"
+                HorizontalAlignment="Center"
+                Source="/FolderResource/FolderImage/Back.png"
+                MouseLeftButtonDown="Back"
+                Grid.Row="10"
+                Cursor="Hand" Margin="174,0,175,0" Width="48"/>
+        <Image  x:Name="BTClose"
+                HorizontalAlignment="Right"
+                Source="/FolderResource/FolderImage/X.png"
+                MouseLeftButtonDown="CloseWindow"
+                Width="13" Margin="0,10,10,32" Cursor="Hand"/>
+        <Image Grid.Row="1"
+               MouseLeftButtonDown="Logo"/>
+        <TextBox x:Name="NameTb"
+                 Grid.Row="2"
+                 Style="{DynamicResource TextBoxStyle}" Margin="30,0" KeyDown="NameTb_KeyDown">
+            <TextBox.Background>
+                <SolidColorBrush Color="#FFF3F3F3" Opacity="0.5"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <TextBox x:Name="DescriptionTb"
+                 Grid.Row="4"
+                 Style="{DynamicResource TextBoxStyle}"
+                 TextWrapping="Wrap" Margin="31,0" KeyDown="DescriptionTb_KeyDown">
+            <TextBox.Background>
+                <SolidColorBrush Color="#FFF3F3F3" Opacity="0.5"/>
+            </TextBox.Background>
+        </TextBox>
+    </Grid>
+    </Border>
+</Window>

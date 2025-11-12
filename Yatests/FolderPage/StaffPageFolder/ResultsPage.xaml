@@ -1,0 +1,147 @@
+﻿<Page x:Class="Yatests.FolderPage.StaffPageFolder.ResultsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Yatests.FolderPage.StaffPageFolder"
+      mc:Ignorable="d" 
+      d:DesignHeight="880" 
+      d:DesignWidth="575"
+      Title="Результаты">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="73"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Style="{DynamicResource LabelLogoStyle}"
+               HorizontalAlignment="Left">
+            <Label.Content>
+                <TextBlock>
+                    <Run Text="{Binding Staff.Surname}"/>
+                    <Run Text="{Binding Staff.Name}"/>
+                    <Run Text="{Binding Staff.Patrnymic}"/>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+        <ListView x:Name="LvResult" Margin="10,5,6,0"
+                  Grid.Row="1"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                  Background="{x:Null}" 
+                  BorderBrush="{x:Null}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="Auto"
+              
+        Width="510" 
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Margin="0,1,0,1"
+              Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="161*"/>
+                            <ColumnDefinition Width="170*"/>
+                            <ColumnDefinition Width="170*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="24"/>
+                        </Grid.RowDefinitions>
+                        <Border 
+                                Grid.Row="0" 
+                                Grid.RowSpan="4" 
+                                Grid.Column="0" 
+                                Grid.ColumnSpan="4" 
+                                Height="Auto" 
+                                BorderThickness="2" Margin="0,5,-10,3"
+                                CornerRadius="10">
+                            <Border.Background>
+                                <SolidColorBrush Color="#F3F3F3" Opacity="0.7"/>
+                            </Border.Background>
+                        </Border>
+                        <StackPanel Orientation="Horizontal"
+                        Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,10,0,0">
+                            <Label Content="Название теста:"
+                                   HorizontalContentAlignment="Left"
+                                   Style="{DynamicResource LabelStyle}"/>
+                            <Label Content="{Binding TestMain.NameTest}"
+                                   HorizontalContentAlignment="Left"
+                                   Style="{DynamicResource LabelStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="3" Margin="0,1,0,0">
+                            <Label Content="Описание:"
+                                   Style="{DynamicResource LabelStyle}"
+                                   HorizontalAlignment="Left"/>
+                            <Label Content="{Binding TestMain.TestDescription}"
+                                   Style="{DynamicResource LabelStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="3"
+                                    Grid.Row="2">
+                            <Label Content="Дата:"
+                                   Style="{DynamicResource LabelStyle}"/>
+                            <Label Content="{Binding DoP}"
+                               Grid.Column="1"
+                               Style="{DynamicResource LabelStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="1"
+                        Margin="0,0,0,10"
+                                    Grid.Row="2">
+                            <Label Content="Результат:"
+                                   Style="{DynamicResource LabelStyle}"/>
+                            <Label Content="{Binding Result1}"
+                                   Style="{DynamicResource LabelStyle}" Foreground="#FF38811B"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+
+
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.Row="2">
+            <Button x:Name="PreviousPageBtn"
+                    Height="Auto"
+                    Width="Auto"
+                    Click="PreviousPageBtn_Click"
+                    Style="{DynamicResource AlternativeButton}">
+                <Button.Content>
+                    <Image Source="/FolderResource/FolderImage/Not.png"
+                           Height="40"
+                           Width="40"/>
+                </Button.Content>
+            </Button>
+            <Label Content="n/n"
+                   x:Name="lblNumber"
+                   FontSize="24"
+                   Style="{DynamicResource LabelStyle}"/>
+            <Button x:Name="NextPageBtn"
+                    Width="Auto"
+                    Height="Auto"
+                    Click="NextPageBtn_Click"
+                    Style="{DynamicResource AlternativeButton}">
+                <Button.Content>
+                    <Image Source="/FolderResource/FolderImage/Next.png"
+                           Height="40"
+                           Width="40"/>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

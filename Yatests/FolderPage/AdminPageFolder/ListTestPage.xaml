@@ -1,0 +1,185 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Yatests.FolderPage.AdminPageFolder"
+      xmlns:SqlServer="clr-namespace:System.Data.Entity.SqlServer;assembly=EntityFramework.SqlServer" x:Class="Yatests.FolderPage.AdminPageFolder.ListTestPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="880" d:DesignWidth="575"
+      Title="Тесты">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="272*"/>
+            <ColumnDefinition Width="290*"/>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19"/>
+            <RowDefinition Height="54"/>
+            <RowDefinition/>
+            <RowDefinition Height="63"/>
+            <RowDefinition Height="0"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="T1" 
+                   HorizontalAlignment="Left" 
+                   Grid.Row="1"
+                   VerticalAlignment="Center" 
+                   Grid.Column="1"
+                   Text="Поиск" 
+                   Height="16" 
+                   Width="56" 
+                   Margin="10,19,0,19"/>
+        <TextBox x:Name="TbSearch"
+                 Grid.Row="1"
+                 Style="{DynamicResource TextBoxStyle}" Height="Auto"
+                 Margin="1,4,44.271,5"
+                 Padding="10"
+                 TextChanged="SearchTb_TextChanged" 
+                 KeyDown="TbSearch_KeyDown" BorderBrush="Black" CaretBrush="Black" Grid.Column="1">
+            <TextBox.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </TextBox.Background>
+        </TextBox>
+        <Button HorizontalAlignment="Left"
+                Grid.Row="1"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Padding="0" Margin="10,4,0,4"
+                x:Name="BtnAddTest"
+                Click="BtnAddTest_Click" Width="46">
+            <Grid Cursor="Hand">
+                <Image  x:Name="BTAdd"
+                        Source="/FolderResource/FolderImage/+.png"
+                        Cursor="Hand" 
+                        Margin="5"/>
+            </Grid>
+        </Button>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="3"
+                    VerticalAlignment="Center" 
+                    Margin="183,1,184,2" Height="60" Grid.ColumnSpan="2">
+            <Button x:Name="PreviousPageBtn"
+                    Height="Auto"
+                    Width="Auto"
+                    Click="PreviousPageBtn_Click"
+                    Style="{DynamicResource AlternativeButton}">
+                <Image Source="/FolderResource/FolderImage/Not.png"
+                           Height="40"
+                           Width="40"/>
+            </Button>
+            <Label Content="n/n"
+                   x:Name="lblNumber"
+                   FontSize="24"
+                   Style="{DynamicResource LabelStyle}"/>
+            <Button x:Name="NextPageBtn"
+                    Width="Auto"
+                    Height="Auto"
+                    Click="NextPageBtn_Click"
+                    Style="{DynamicResource AlternativeButton}" Cursor="Hand">
+                <Image Source="/FolderResource/FolderImage/Next.png"
+                           Height="40"
+                           Width="40"/>
+            </Button>
+        </StackPanel>
+        <ListView x:Name="LvTest"
+                  Grid.Row="2"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                  Background="{x:Null}" Margin="10,5,6,0" Grid.ColumnSpan="3" BorderBrush="{x:Null}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Изменить"
+                              x:Name="BtnChange"
+                              Click="BtnChange_Click"/>
+                    <MenuItem Header="Удалить"
+                              x:Name="BtnDelete"
+                              Click="BtnDelete_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="Auto"
+              Width="510" 
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Margin="0,1,0,1"
+              Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="161*"/>
+                            <ColumnDefinition Width="170*"/>
+                            <ColumnDefinition Width="170*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                        </Grid.RowDefinitions>
+                        <Border Width="520" Grid.Row="0" Grid.RowSpan="4" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="4" 
+                    Height="Auto" 
+          BorderThickness="2" Margin="0,5,-10,5"
+          CornerRadius="10">
+                            <Border.Background>
+                                <SolidColorBrush Color="#F3F3F3" Opacity="0.7"/>
+                            </Border.Background>
+                        </Border>
+                        <StackPanel Orientation="Horizontal"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="4"
+                        Grid.Column="1">
+                            <Label Content="{Binding Status.NameStatus}"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Grid.Row="2"
+                       Style="{DynamicResource LabelStyle}" 
+                       Foreground="#FF216114"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="4"
+                        Margin="0,10,0,0"
+                        Grid.Column="1"
+                       >
+                            <Label Content="{Binding NameTest}"
+                       Style="{DynamicResource LabelLogoStyle2}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Column="1">
+                            <Label Content="Описание:"
+                       HorizontalContentAlignment="Left"
+                       Style="{DynamicResource LabelStyle}"/>
+                            <Label Content="{Binding TestDescription}"
+                       Style="{DynamicResource LabelStyle}"/>
+                        </StackPanel>
+                        <Button x:Name="GoTestBtn"
+                                Cursor="Hand"
+                    ToolTip="{Binding IdTestMain}"
+                    Content="Подробнее"
+                    Grid.Column="3"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    Style="{DynamicResource MainButtonStyle}"
+                    Click="GoTestBtn" 
+                    Margin="0,0,0,7" 
+                    Grid.Row="2" 
+                    Width="170"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+
+    </Grid>
+</Page>

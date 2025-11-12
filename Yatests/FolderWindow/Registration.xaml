@@ -1,0 +1,40 @@
+﻿<Window x:Class="Yatests.FolderWindow.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Yatests.FolderWindow"
+        mc:Ignorable="d"
+         Title="Регистрация"
+        Height="614"
+        Width="401"
+         WindowStyle="None" 
+        ResizeMode="NoResize" 
+        Topmost="True" 
+        BorderThickness="1.5"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border Width="Auto" Height="Auto"
+          BorderThickness="2"
+          CornerRadius="10" BorderBrush="Black">
+        <Border.Background>
+            <ImageBrush ImageSource="/Yatests;component/FolderResource/FolderImage/Background.jpg"
+                        Stretch="UniformToFill"/>
+        </Border.Background>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="582"/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden" Margin="0,0,0,-27"/>
+        <Image  x:Name="BTClose"
+                HorizontalAlignment="Right"
+                Source="/FolderResource/FolderImage/X.png"
+                MouseLeftButtonDown="CloseWindow"
+                Height="13"
+                Width="13" Margin="0,12,12,557"/>
+        </Grid>
+    </Border>
+</Window>

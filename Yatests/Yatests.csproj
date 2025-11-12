@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{62E917F1-39D5-47ED-A33B-7D6260C4531E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Yatests</RootNamespace>
+    <AssemblyName>Yatests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="FolderClass\ListQuestionClass.cs" />
+    <Compile Include="FolderClass\MBClass.cs" />
+    <Compile Include="FolderClass\VariableClass.cs" />
+    <Compile Include="FolderData\Admin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Answer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\ContextClass.cs" />
+    <Compile Include="FolderData\IsTrueOrFalse.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Question.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Staff.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Status.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\TestMain.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderData\Visiability.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\AdminPageFolder\ListStaffPage.xaml.cs">
+      <DependentUpon>ListStaffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\AdminPageFolder\ListTestPage.xaml.cs">
+      <DependentUpon>ListTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\AdminPageFolder\QuestionPageFolder\ListQuestionPage.xaml.cs">
+      <DependentUpon>ListQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\AdminPageFolder\ResultsPageFolder\ResultsStaffPage.xaml.cs">
+      <DependentUpon>ResultsStaffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\QuestionFolder\ListAnswerPage.xaml.cs">
+      <DependentUpon>ListAnswerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\RegistrationPage\RegistrationStep1Page.xaml.cs">
+      <DependentUpon>RegistrationStep1Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\RegistrationPage\RegistrationStep2Page.xaml.cs">
+      <DependentUpon>RegistrationStep2Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\StaffPageFolder\ResultsPage.xaml.cs">
+      <DependentUpon>ResultsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderPage\StaffPageFolder\TestListPage.xaml.cs">
+      <DependentUpon>TestListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\AdminWindowFolder\AdminMainWindow.xaml.cs">
+      <DependentUpon>AdminMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\AdminWindowFolder\QuestionFolder\AnswerFolder\AddAnswerWindow.xaml.cs">
+      <DependentUpon>AddAnswerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\AdminWindowFolder\QuestionFolder\AnswerFolder\ChangeAnswerWindow.xaml.cs">
+      <DependentUpon>ChangeAnswerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\AdminWindowFolder\TestMainFolder\AddTestMainWindow.xaml.cs">
+      <DependentUpon>AddTestMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\AdminWindowFolder\TestMainFolder\EditTestMainWindow.xaml.cs">
+      <DependentUpon>EditTestMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\Authorization.xaml.cs">
+      <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="FolderPage\AdminPageFolder\ListStaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderPage\AdminPageFolder\ListTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderPage\AdminPageFolder\QuestionPageFolder\ListQuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderPage\AdminPageFolder\ResultsPageFolder\ResultsStaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderPage\QuestionFolder\ListAnswerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderPage\RegistrationPage\RegistrationStep1Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderPage\RegistrationPage\RegistrationStep2Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderPage\StaffPageFolder\ResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderPage\StaffPageFolder\TestListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderResource\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\AdminWindowFolder\AdminMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\AdminWindowFolder\QuestionFolder\AnswerFolder\AddAnswerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\AdminWindowFolder\QuestionFolder\AnswerFolder\ChangeAnswerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\AdminWindowFolder\TestMainFolder\AddTestMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\AdminWindowFolder\TestMainFolder\EditTestMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\Authorization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\MBFolder\Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\MBFolder\Author.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\MBFolder\ErrorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\MBFolder\InfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\MBFolder\QuestionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\MBFolder\Staff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\StaffWindowFolder\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FolderWindow\MBFolder\Admin.xaml.cs">
+      <DependentUpon>Admin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\MBFolder\Author.xaml.cs">
+      <DependentUpon>Author.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\MBFolder\ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\MBFolder\InfoWindow.xaml.cs">
+      <DependentUpon>InfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\MBFolder\QuestionWindow.xaml.cs">
+      <DependentUpon>QuestionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\MBFolder\Staff.xaml.cs">
+      <DependentUpon>Staff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FolderWindow\StaffWindowFolder\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="FolderData\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FolderData\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FolderResource\FolderImage\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FolderResource\FolderImage\Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FolderResource\FolderImage\SAVE.png" />
+    <Resource Include="FolderResource\FolderImage\SaveChanges.png" />
+    <Resource Include="FolderResource\FolderImage\Next.png" />
+    <Resource Include="FolderResource\FolderImage\Not.png" />
+    <Resource Include="FolderResource\FolderImage\Back.png" />
+    <Resource Include="FolderResource\FolderImage\Exit.png" />
+    <Resource Include="Logo.ico" />
+    <Resource Include="FolderResource\FolderImage\X.png" />
+    <Resource Include="FolderResource\FolderImage\Enter.png" />
+    <Resource Include="FolderResource\FolderImage\AddAccount.png" />
+    <Resource Include="FolderResource\FolderImage\Ok.png" />
+    <Resource Include="FolderResource\FolderImage\No.png" />
+    <Resource Include="FolderResource\FolderImage\Mistake.png" />
+    <Resource Include="FolderResource\FolderImage\Question.png" />
+    <Resource Include="FolderResource\FolderImage\Further.png" />
+    <Resource Include="FolderResource\FolderImage\+.png" />
+    <Resource Include="FolderResource\FolderImage\CreateATest.png" />
+    <Content Include="FolderData\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="FolderData\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="FolderResource\FolderImage\Information.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

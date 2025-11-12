@@ -1,0 +1,710 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="IdAdmin" />
+          </Key>
+          <Property Name="IdAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="40" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="IdAnswer" />
+          </Key>
+          <Property Name="IdAnswer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberAnswer" Type="int" Nullable="false" />
+          <Property Name="IdQuestion" Type="int" Nullable="false" />
+          <Property Name="ContentAnswer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdIsTrueOrFalse" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IsTrueOrFalse">
+          <Key>
+            <PropertyRef Name="IdIsTrueOrFalse" />
+          </Key>
+          <Property Name="IdIsTrueOrFalse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsTrueOrFalseStatus" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="IdQuestion" />
+          </Key>
+          <Property Name="IdQuestion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTestMain" Type="int" Nullable="false" />
+          <Property Name="ContentQuestion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Point" Type="int" Nullable="false" />
+          <Property Name="IdVisiability" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="IdResult" />
+          </Key>
+          <Property Name="IdResult" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdStaff" Type="int" />
+          <Property Name="IdTestMain" Type="int" />
+          <Property Name="Result" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="DoP" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRole" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="IdStaff" />
+          </Key>
+          <Property Name="IdStaff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="40" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IdStatus" />
+          </Key>
+          <Property Name="IdStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameStatus" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestMain">
+          <Key>
+            <PropertyRef Name="IdTestMain" />
+          </Key>
+          <Property Name="IdTestMain" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameTest" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+          <Property Name="TestDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginUser" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="PasswordUser" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Visiability">
+          <Key>
+            <PropertyRef Name="IdVisiability" />
+          </Key>
+          <Property Name="IdVisiability" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Visiability" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Admin_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_IsTrueOrFalse">
+          <End Role="IsTrueOrFalse" Type="Self.IsTrueOrFalse" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IsTrueOrFalse">
+              <PropertyRef Name="IdIsTrueOrFalse" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="IdIsTrueOrFalse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="IdQuestion" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="IdQuestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_TestMain">
+          <End Role="TestMain" Type="Self.TestMain" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestMain">
+              <PropertyRef Name="IdTestMain" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="IdTestMain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Visiability">
+          <End Role="Visiability" Type="Self.Visiability" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visiability">
+              <PropertyRef Name="IdVisiability" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="IdVisiability" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_TestMain">
+          <End Role="TestMain" Type="Self.TestMain" Multiplicity="0..1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestMain">
+              <PropertyRef Name="IdTestMain" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="IdTestMain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestMain_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="TestMain" Type="Self.TestMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="TestMain">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DBModelContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IsTrueOrFalse" EntityType="Self.IsTrueOrFalse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestMain" EntityType="Self.TestMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visiability" EntityType="Self.Visiability" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Admin_User" Association="Self.FK_Admin_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_IsTrueOrFalse" Association="Self.FK_Answer_IsTrueOrFalse">
+            <End Role="IsTrueOrFalse" EntitySet="IsTrueOrFalse" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_TestMain" Association="Self.FK_Question_TestMain">
+            <End Role="TestMain" EntitySet="TestMain" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Visiability" Association="Self.FK_Question_Visiability">
+            <End Role="Visiability" EntitySet="Visiability" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Staff" Association="Self.FK_Result_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_TestMain" Association="Self.FK_Result_TestMain">
+            <End Role="TestMain" EntitySet="TestMain" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_User" Association="Self.FK_Staff_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestMain_Status" Association="Self.FK_TestMain_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="TestMain" EntitySet="TestMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="IdAdmin" />
+          </Key>
+          <Property Name="IdAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Admin_User" FromRole="Admin" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="IdAnswer" />
+          </Key>
+          <Property Name="IdAnswer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberAnswer" Type="Int32" Nullable="false" />
+          <Property Name="IdQuestion" Type="Int32" Nullable="false" />
+          <Property Name="ContentAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdIsTrueOrFalse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IsTrueOrFalse" Relationship="Self.FK_Answer_IsTrueOrFalse" FromRole="Answer" ToRole="IsTrueOrFalse" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="IsTrueOrFalse">
+          <Key>
+            <PropertyRef Name="IdIsTrueOrFalse" />
+          </Key>
+          <Property Name="IdIsTrueOrFalse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsTrueOrFalseStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Answer" Relationship="Self.FK_Answer_IsTrueOrFalse" FromRole="IsTrueOrFalse" ToRole="Answer" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="IdQuestion" />
+          </Key>
+          <Property Name="IdQuestion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTestMain" Type="Int32" Nullable="false" />
+          <Property Name="ContentQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Point" Type="Int32" Nullable="false" />
+          <Property Name="IdVisiability" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answer" Relationship="Self.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="TestMain" Relationship="Self.FK_Question_TestMain" FromRole="Question" ToRole="TestMain" />
+          <NavigationProperty Name="Visiability" Relationship="Self.FK_Question_Visiability" FromRole="Question" ToRole="Visiability" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="IdResult" />
+          </Key>
+          <Property Name="IdResult" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdStaff" Type="Int32" />
+          <Property Name="IdTestMain" Type="Int32" />
+          <Property Name="Result1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoP" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Result_Staff" FromRole="Result" ToRole="Staff" />
+          <NavigationProperty Name="TestMain" Relationship="Self.FK_Result_TestMain" FromRole="Result" ToRole="TestMain" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRole" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="IdStaff" />
+          </Key>
+          <Property Name="IdStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Result" Relationship="Self.FK_Result_Staff" FromRole="Staff" ToRole="Result" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Staff_User" FromRole="Staff" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IdStatus" />
+          </Key>
+          <Property Name="IdStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameStatus" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TestMain" Relationship="Self.FK_TestMain_Status" FromRole="Status" ToRole="TestMain" />
+        </EntityType>
+        <EntityType Name="TestMain">
+          <Key>
+            <PropertyRef Name="IdTestMain" />
+          </Key>
+          <Property Name="IdTestMain" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameTest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <Property Name="TestDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_TestMain" FromRole="TestMain" ToRole="Question" />
+          <NavigationProperty Name="Result" Relationship="Self.FK_Result_TestMain" FromRole="TestMain" ToRole="Result" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_TestMain_Status" FromRole="TestMain" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginUser" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordUser" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Admin_User" FromRole="User" ToRole="Admin" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_User" FromRole="User" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Visiability">
+          <Key>
+            <PropertyRef Name="IdVisiability" />
+          </Key>
+          <Property Name="IdVisiability" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Visiability1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_Visiability" FromRole="Visiability" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK_Admin_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_IsTrueOrFalse">
+          <End Role="IsTrueOrFalse" Type="Self.IsTrueOrFalse" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IsTrueOrFalse">
+              <PropertyRef Name="IdIsTrueOrFalse" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="IdIsTrueOrFalse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answer_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="IdQuestion" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="IdQuestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_TestMain">
+          <End Role="TestMain" Type="Self.TestMain" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestMain">
+              <PropertyRef Name="IdTestMain" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="IdTestMain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Visiability">
+          <End Role="Visiability" Type="Self.Visiability" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visiability">
+              <PropertyRef Name="IdVisiability" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="IdVisiability" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="IdStaff" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="IdStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Result_TestMain">
+          <End Role="TestMain" Type="Self.TestMain" Multiplicity="0..1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestMain">
+              <PropertyRef Name="IdTestMain" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="IdTestMain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestMain_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="TestMain" Type="Self.TestMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="TestMain">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Answer" EntityType="Self.Answer" />
+          <EntitySet Name="IsTrueOrFalse" EntityType="Self.IsTrueOrFalse" />
+          <EntitySet Name="Question" EntityType="Self.Question" />
+          <EntitySet Name="Result" EntityType="Self.Result" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="TestMain" EntityType="Self.TestMain" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Visiability" EntityType="Self.Visiability" />
+          <AssociationSet Name="FK_Admin_User" Association="Self.FK_Admin_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_IsTrueOrFalse" Association="Self.FK_Answer_IsTrueOrFalse">
+            <End Role="IsTrueOrFalse" EntitySet="IsTrueOrFalse" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_TestMain" Association="Self.FK_Question_TestMain">
+            <End Role="TestMain" EntitySet="TestMain" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Visiability" Association="Self.FK_Question_Visiability">
+            <End Role="Visiability" EntitySet="Visiability" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_Staff" Association="Self.FK_Result_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Result_TestMain" Association="Self.FK_Result_TestMain">
+            <End Role="TestMain" EntitySet="TestMain" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_User" Association="Self.FK_Staff_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestMain_Status" Association="Self.FK_TestMain_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="TestMain" EntitySet="TestMain" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="DBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answer">
+            <EntityTypeMapping TypeName="DBModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="IdAnswer" ColumnName="IdAnswer" />
+                <ScalarProperty Name="NumberAnswer" ColumnName="NumberAnswer" />
+                <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
+                <ScalarProperty Name="ContentAnswer" ColumnName="ContentAnswer" />
+                <ScalarProperty Name="IdIsTrueOrFalse" ColumnName="IdIsTrueOrFalse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IsTrueOrFalse">
+            <EntityTypeMapping TypeName="DBModel.IsTrueOrFalse">
+              <MappingFragment StoreEntitySet="IsTrueOrFalse">
+                <ScalarProperty Name="IdIsTrueOrFalse" ColumnName="IdIsTrueOrFalse" />
+                <ScalarProperty Name="IsTrueOrFalseStatus" ColumnName="IsTrueOrFalseStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question">
+            <EntityTypeMapping TypeName="DBModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
+                <ScalarProperty Name="IdTestMain" ColumnName="IdTestMain" />
+                <ScalarProperty Name="ContentQuestion" ColumnName="ContentQuestion" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="IdVisiability" ColumnName="IdVisiability" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Result">
+            <EntityTypeMapping TypeName="DBModel.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="IdResult" ColumnName="IdResult" />
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+                <ScalarProperty Name="IdTestMain" ColumnName="IdTestMain" />
+                <ScalarProperty Name="Result1" ColumnName="Result" />
+                <ScalarProperty Name="DoP" ColumnName="DoP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="DBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="DBModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="DBModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="NameStatus" ColumnName="NameStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestMain">
+            <EntityTypeMapping TypeName="DBModel.TestMain">
+              <MappingFragment StoreEntitySet="TestMain">
+                <ScalarProperty Name="IdTestMain" ColumnName="IdTestMain" />
+                <ScalarProperty Name="NameTest" ColumnName="NameTest" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="TestDescription" ColumnName="TestDescription" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visiability">
+            <EntityTypeMapping TypeName="DBModel.Visiability">
+              <MappingFragment StoreEntitySet="Visiability">
+                <ScalarProperty Name="IdVisiability" ColumnName="IdVisiability" />
+                <ScalarProperty Name="Visiability1" ColumnName="Visiability" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,307 @@
+﻿<Page x:Class="Yatests.FolderPage.AdminPageFolder.QuestionPageFolder.ListQuestionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Yatests.FolderPage.AdminPageFolder.QuestionPageFolder"
+      mc:Ignorable="d" 
+      d:DesignHeight="880" d:DesignWidth="575"
+      Title="Тест">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Button HorizontalAlignment="Left"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Height="46"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Padding="0" Margin="10 0 0 0"
+                x:Name="BtnAdd" Click="BtnAdd_Click"
+                >
+            <Button.Content>
+                <Grid IsEnabled="False">
+                    <Image  x:Name="BTAddd"
+                            Source="/FolderResource/FolderImage/+.png"
+                            Cursor="Hand" Margin="5"/>
+                </Grid>
+            </Button.Content>
+        </Button>
+
+        <Border BorderBrush="{DynamicResource Black}"
+                Height="auto" 
+                MinWidth="500" 
+                Width="539" 
+                Grid.Row="1" 
+                Padding="10"
+                BorderThickness="1" 
+                CornerRadius="5" 
+                Margin="10,10,0,10" 
+                HorizontalAlignment="Left">
+            <Border.Background>
+                <SolidColorBrush Color="#EFCD61" Opacity="0.5"/>
+            </Border.Background>
+            <Label Style="{DynamicResource LabelLogoStyle}"
+                   x:Name="LblNameTest" 
+                   HorizontalContentAlignment="Left"/>
+        </Border>
+        <ScrollViewer Grid.Row="2">
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      x:Name="LvQuestionInTest"
+                      Height="732" Width="auto"
+                      MouseDoubleClick="LvQuestionInTest_MouseDoubleClick"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{x:Null}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="{DynamicResource Black}"
+                                Height="auto"
+                                Width="500"  Padding="10"
+                                BorderThickness="1" CornerRadius="5" Margin="10" HorizontalAlignment="Left">
+                            <Border.Background>
+                                <SolidColorBrush Color="#EFCD61" Opacity="0.5"/>
+                            </Border.Background>
+                            <TextBox x:Name="TbContentQuestin" Padding="0"
+                                     Width="auto" Background="{x:Null}"
+                                     BorderBrush="{x:Null}"
+                                     TextWrapping="Wrap" IsReadOnly="True"
+                                     Style="{DynamicResource TextBoxStyle}"
+                                     Text="{Binding ContentQuestion}"/>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+
+        <Border BorderBrush="{DynamicResource Black}" 
+                Margin="10"
+                Height="300" 
+                MinWidth="500" 
+                Width="auto" 
+                Grid.Row="4" 
+                Padding="10"
+                BorderThickness="1" 
+                CornerRadius="5" 
+                Grid.ColumnSpan="2" 
+                x:Name="BrdMenu"
+                Visibility="Collapsed">
+            <Border.Background>
+                <SolidColorBrush Color="#EFCD61" Opacity="0.5"/>
+            </Border.Background>
+            <ScrollViewer>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="287*"/>
+                        <ColumnDefinition Width="288*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.ColumnSpan="2">
+                        <Button Style="{DynamicResource MainButtonStyle}"
+                            Background="{x:Null}" BorderBrush="{x:Null}"
+                            HorizontalAlignment="Right"
+                            Width="auto" Height="Auto"
+                            Margin="0"
+                            x:Name="BtnCloseMenu"
+                            Click="BtnCloseMenu_Click">
+                            <Button.Content>
+                                <Grid Height="31"
+                                  Width="31">
+                                    <Ellipse Width="auto"
+                                         Height="auto"
+                                         Fill="{DynamicResource Red}" Cursor="Hand"/>
+                                    <Line X1="8" Y1="8"
+                                      X2="23" Y2="23"
+                                      Stroke="White"
+                                      StrokeThickness="2"/>
+                                    <Line X1="23" Y1="8"
+                                      X2="8" Y2="23"
+                                      Stroke="White"
+                                      StrokeThickness="2"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+                        <TabControl Width="auto" Height="auto" Margin="0"
+                            Style="{DynamicResource BaseControl}" Background="{DynamicResource Yellow}">
+                            <TabItem Header="Настройки" 
+                                 FontSize="17" FontFamily="Roboto"
+                                 FontWeight="Regular">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="401*"/>
+                                        <ColumnDefinition Width="152*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel CanVerticallyScroll="True" Grid.Column="0">
+                                        <TextBox x:Name="TbChangeContentQuestin" 
+                                         Height="auto"
+                                         TextWrapping="Wrap"
+                                         Style="{DynamicResource TextBoxStyle}" 
+                                         Padding="10"
+                                         Margin="5,5">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFEEEEEE" Opacity="0.5"/>
+                                            </TextBox.Background>
+                                        </TextBox>
+                                        <TextBox x:Name="TbChangePoint" MaxLength="10"
+                                         Style="{DynamicResource TextBoxStyle}" 
+                                         Padding="10"
+                                         Margin="5,5">
+                                            <TextBox.Background>
+                                                <SolidColorBrush Color="#FFF3F3F3" Opacity="0.5"/>
+                                            </TextBox.Background>
+                                        </TextBox>
+                                        <ComboBox
+                                          x:Name="CbStatus"
+                                          SelectedItem="{Binding Visiability}"
+                                          SelectedValuePath="IdVisiability"
+                                          DisplayMemberPath="Visiability1" 
+                                    Padding="10"
+                                    Margin="5,5"/>
+                                    </StackPanel>
+
+                                    <StackPanel CanVerticallyScroll="True" Grid.Column="0"/>
+
+                                    <StackPanel Grid.Column="1">
+                                        <Button Style="{DynamicResource MainButtonStyle}"
+                                        Padding="10" Width="Auto" Height="32"
+                                        Content="Сохранить"
+                                        x:Name="BtnSaveChangeQuestion"
+                                        Click="BtnSaveChangeQuestion_Click" Margin="10" Cursor="Hand"/>
+                                        <Button Style="{DynamicResource MainButtonStyle}"
+                                        Padding="10" Width="Auto" Height="32"
+                                        Content="Отменить"
+                                        x:Name="BtnCanselQuestion"
+                                        Click="BtnCanselQuestion_Click" Margin="10" Cursor="Hand"/>
+                                        <Button Style="{DynamicResource MainButtonStyle}"
+                                        Padding="10" Width="Auto" Height="32"
+                                        Content="Удалить"
+                                        x:Name="BtnRemoveQuestion"
+                                        Click="BtnRemoveQuestion_Click" Margin="10" Cursor="Hand"/>
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="Ответ"
+                                 FontSize="17" 
+                                 FontFamily="Myriad Pro"
+                                 FontWeight="Regular">
+                                <StackPanel CanVerticallyScroll="True">
+                                    <Button x:Name="AddAnswer"
+                                        Style="{DynamicResource MainButtonStyle}"
+                                        Background="{x:Null}" 
+                                        BorderBrush="{x:Null}"
+                                        Width="auto" Height="auto"
+                                        Margin="0" Padding="0"
+                                        HorizontalAlignment="Right"
+                                        Click="AddAnswer_Click">
+                                        <Button.Content>
+                                            <Grid Width="20" Height="20">
+                                                <Ellipse Fill="{DynamicResource Red}"
+                                                     Width="20" Height="20" Margin="-5,-3,5,3"/>
+                                                <Line X1="3" Y1="10"
+                                                  X2="17" Y2="10"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5" Margin="-5,-3,5,3"/>
+                                                <Line X1="10" Y1="3"
+                                                  X2="10" Y2="17"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5" Margin="-5,-3,5,3"/>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                    <DataGrid Style="{DynamicResource DataGridStyle}"
+                                          x:Name="DgAnswer" BorderBrush="{x:Null}">
+                                        <DataGrid.Background>
+                                            <SolidColorBrush Color="#FFF0F0F0" Opacity="0.5"/>
+                                        </DataGrid.Background>
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn Header="№" 
+                                                                Width="60">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBox Style="{DynamicResource TextBoxStyle}"
+                                                             Text="{Binding NumberAnswer}"
+                                                             IsReadOnly="True"
+                                                             TextWrapping="Wrap"
+                                                             BorderBrush="{x:Null}"
+                                                             Background="{x:Null}"
+                                                             Padding="0"
+                                                             Margin="0"
+                                                             VerticalContentAlignment="Top"
+                                                             HorizontalAlignment="Stretch"
+                                                             HorizontalContentAlignment="Left"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+                                            <DataGridTemplateColumn Header="Ответ" 
+                                                                Width="1.3*">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBox Style="{DynamicResource TextBoxStyle}"
+                                                             Text="{Binding ContentAnswer}"
+                                                             IsReadOnly="True"
+                                                             TextWrapping="Wrap"
+                                                             BorderBrush="{x:Null}"
+                                                             Background="{x:Null}"
+                                                             Padding="0"
+                                                             Margin="0"
+                                                             VerticalContentAlignment="Top"
+                                                             HorizontalAlignment="Stretch"
+                                                             HorizontalContentAlignment="Left"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+                                            <DataGridTemplateColumn Header="Правильность" Width="0.5*">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBox Style="{DynamicResource TextBoxStyle}"
+                                                             Text="{Binding IsTrueOrFalse.IsTrueOrFalseStatus}"
+                                                             IsReadOnly="True"
+                                                             TextWrapping="Wrap"
+                                                             BorderBrush="{x:Null}"
+                                                             Background="{x:Null}"
+                                                             Padding="0"
+                                                             Margin="0"
+                                                             VerticalContentAlignment="Top"
+                                                             HorizontalAlignment="Stretch"
+                                                             HorizontalContentAlignment="Left"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Дейстия" Width="0.8*">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+                                                            <Button Content="Изменить"
+                                                                Margin="5"
+                                                                Width="150"
+                                                                x:Name="BtnChangeAnswer"
+                                                                Style="{DynamicResource MainButtonStyle}"
+                                                                ToolTip="{Binding IdAnswer}"
+                                                                Click="BtnChangeAnswer_Click"/>
+                                                            <Button Content="Удалить"
+                                                                x:Name="BtnRemoveAnswer"
+                                                                Margin="5"
+                                                                Width="150"
+                                                                Style="{DynamicResource MainButtonStyle}"
+                                                                ToolTip="{Binding IdAnswer}"
+                                                                Click="BtnRemoveAnswer_Click"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Border>
+
+    </Grid>
+</Page>
